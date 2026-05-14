@@ -2,9 +2,9 @@ function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen w-full bg-zinc-900 text-white flex items-center pt-24"
+      className="min-h-screen w-full bg-zinc-900 text-white flex items-center "
     >
-      <div className="w-full flex flex-col md:flex-row justify-around items-center px-12">
+      <div className="w-full flex flex-col md:flex-row justify-center gap-8 items-center px-8">
         
         {/* Left Side Image */}
         <div className="flex justify-center mb-10 md:mb-0">

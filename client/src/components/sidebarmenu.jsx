@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function SidebarMenu({ open, setOpen }) {
   return (
@@ -19,29 +20,39 @@ function SidebarMenu({ open, setOpen }) {
         {/* Links */}
         <ul className="flex flex-col items-center gap-8 mt-10 text-lg text-white">
           <li>
-            <a href="#home" onClick={() => setOpen(false)}>
+            <Link to="/" onClick={() => setOpen(false)}>
               Home
-            </a>
+            </Link>
           </li>
+
           <li>
-            <a href="#about" onClick={() => setOpen(false)}>
+            <Link to="/about" onClick={() => setOpen(false)}>
               About
-            </a>
+            </Link>
           </li>
+
           <li>
-            <a href="#skills" onClick={() => setOpen(false)}>
+            <Link to="/skills" onClick={() => setOpen(false)}>
               Skills
-            </a>
+            </Link>
           </li>
+
           <li>
-            <a href="#projects" onClick={() => setOpen(false)}>
+            <Link to="/projects" onClick={() => setOpen(false)}>
               Projects
-            </a>
+            </Link>
           </li>
+
           <li>
-            <a href="#contact" onClick={() => setOpen(false)}>
+            <Link to="/achievements" onClick={() => setOpen(false)}>
+              Achievements
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/contact" onClick={() => setOpen(false)}>
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
