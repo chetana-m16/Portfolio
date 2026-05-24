@@ -1,31 +1,55 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Trophy, Award, BadgeCheck, Star } from "lucide-react";
+import {
+  Trophy,
+  Award,
+  BadgeCheck,
+  Star,
+  Brain,
+  Code2,
+} from "lucide-react";
 
 const achievements = [
   {
     icon: <Award size={28} />,
-    title: "Generative AI Certification",
+    title: "Research Paper Presentation",
     description:
-      "Completed Generative AI course certification from GUVI SAWiT.",
+      "Presented the research paper “A Voice-Driven AI Assistant for Enhancing Elderly Well-Being (TI-33)” at NCISET 2025.",
   },
-  {
-    icon: <BadgeCheck size={28} />,
-    title: "Internship Experience",
-    description:
-      "Worked on NGO Food Donation platform and contributed to UI design, documentation, and authentication modules.",
-  },
+
   {
     icon: <Trophy size={28} />,
-    title: "Academic Projects",
+    title: "Smart India Hackathon 2024",
     description:
-      "Built ML-based systems including Face Shape Jewelry Recommender and Medicinal Plant Detection.",
+      "Participated in Smart India Hackathon 2024 and contributed innovative ideas and problem-solving approaches in a collaborative environment.",
   },
+
+  {
+    icon: <BadgeCheck size={28} />,
+    title: "C Programming Quiz Competition",
+    description:
+      "Secured participation in the C Programming Quiz Competition, demonstrating analytical thinking and programming fundamentals.",
+  },
+
   {
     icon: <Star size={28} />,
-    title: "Problem Solving Journey",
+    title: "WebSpark Web Development Competition",
     description:
-      "Actively learning Java, DSA, backend development, and improving coding problem-solving skills.",
+      "Achieved Runner-Up position in the WebSpark Web Development Competition, showcasing web development and teamwork skills.",
+  },
+
+  {
+    icon: <Code2 size={28} />,
+    title: "Technical Projects",
+    description:
+      "Developed multiple technical projects including ML-based systems, Flutter applications, and MERN stack applications.",
+  },
+
+  {
+    icon: <Brain size={28} />,
+    title: "Continuous Technical Learning",
+    description:
+      "Continuously improving skills in Java, DSA, backend development, Flutter, Machine Learning, and modern web technologies.",
   },
 ];
 
@@ -33,9 +57,12 @@ function Achievements() {
   return (
     <section
       id="achievements"
-      className="min-h-screen bg-gradient-to-br pt-20 from-slate-950 via-zinc-900 to-black text-white px-6 py-20"
+      className="min-h-screen bg-gradient-to-br from-slate-950 via-zinc-900 to-black text-white px-6 py-20 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.08),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.08),transparent_30%)]" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -47,23 +74,36 @@ function Achievements() {
           <h1 className="text-5xl md:text-6xl font-bold">
             My <span className="text-cyan-400">Achievements</span>
           </h1>
+
           <p className="text-zinc-400 mt-4 text-lg">
-            Certifications, milestones & accomplishments
+            Certifications, projects, internship experience & technical growth
           </p>
         </motion.div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {achievements.map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -8, scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-lg hover:shadow-cyan-500/20"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-7 shadow-lg hover:border-cyan-400 hover:shadow-cyan-500/10 transition-all"
             >
-              <div className="text-cyan-400 mb-4">{item.icon}</div>
-              <h2 className="text-2xl font-semibold">{item.title}</h2>
-              <p className="text-zinc-400 mt-3 leading-relaxed">
+              {/* Icon */}
+              <div className="w-14 h-14 rounded-xl bg-zinc-800 flex items-center justify-center text-cyan-400 mb-5">
+                {item.icon}
+              </div>
+
+              {/* Title */}
+              <h2 className="text-2xl font-semibold leading-snug">
+                {item.title}
+              </h2>
+
+              {/* Description */}
+              <p className="text-zinc-400 mt-4 leading-relaxed text-sm">
                 {item.description}
               </p>
             </motion.div>

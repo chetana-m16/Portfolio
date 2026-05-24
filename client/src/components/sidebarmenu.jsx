@@ -19,37 +19,41 @@ function SidebarMenu({ open, setOpen }) {
 
         {/* Links */}
         <ul className="flex flex-col items-center gap-8 mt-10 text-lg text-white">
-          <li>
+          <li className=" hover:text-cyan-400">
             <Link to="/" onClick={() => setOpen(false)}>
               Home
             </Link>
           </li>
 
-          <li>
+          <li className=" hover:text-cyan-400">
             <Link to="/about" onClick={() => setOpen(false)}>
               About
             </Link>
           </li>
 
-          <li>
+          <li className=" hover:text-cyan-400">
             <Link to="/skills" onClick={() => setOpen(false)}>
               Skills
             </Link>
           </li>
 
-          <li>
+          <li className=" hover:text-cyan-400">
             <Link to="/projects" onClick={() => setOpen(false)}>
               Projects
             </Link>
           </li>
-
-          <li>
+          <li className=" hover:text-cyan-400">
+            <Link to="/experience" onClick={() => setOpen(false)}>
+            Experience
+            </Link>
+          </li>
+          <li className=" hover:text-cyan-400">
             <Link to="/achievements" onClick={() => setOpen(false)}>
               Achievements
             </Link>
           </li>
 
-          <li>
+          <li className=" hover:text-cyan-400">
             <Link to="/contact" onClick={() => setOpen(false)}>
               Contact
             </Link>

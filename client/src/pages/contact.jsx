@@ -1,15 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
   Phone,
   MapPin,
-  Code2,
- Briefcase,
   Send,
+  CheckCircle,
+  AlertCircle
 } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 function Contact() {
+  // Add state for form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({ type: "success", message: data.message || "Message sent successfully" });
+        // Reset form on success
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus({ type: "error", message: data.message || "Failed to send message. Please try again." });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitStatus({ type: "error", message: "Network error. Please check your connection." });
+    } finally {
+      setIsSubmitting(false);
+      // Clear status message after 5 seconds
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -28,7 +81,7 @@ function Contact() {
             Contact <span className="text-cyan-400">Me</span>
           </h1>
           <p className="text-zinc-400 mt-4 text-lg">
-            Let’s connect and build something amazing together
+            Let's connect and build something amazing together
           </p>
         </motion.div>
 
@@ -48,12 +101,12 @@ function Contact() {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <Mail className="text-cyan-400" />
-                <span>yourmail@gmail.com</span>
+                <span>chetnamahajan2@gmail.com</span>
               </div>
 
               <div className="flex items-center gap-4">
                 <Phone className="text-cyan-400" />
-                <span>+91 9876543210</span>
+                <span>+91-9860933780</span>
               </div>
 
               <div className="flex items-center gap-4">
@@ -65,23 +118,28 @@ function Contact() {
             {/* Socials */}
             <div className="flex gap-5 mt-10">
               <a
-                href="https://Code2.com/chetana-m16?tab=repositories"
+                href="https://github.com/chetana-m16"
                 className="p-3 rounded-full bg-zinc-800 hover:bg-cyan-500 transition"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Code2 />
+                <FaGithub size={20} />
               </a>
 
               <a
                 href="https://www.linkedin.com/in/chetana-mahajan-b78333221/"
                 className="p-3 rounded-full bg-zinc-800 hover:bg-cyan-500 transition"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Briefcase/>
+                <FaLinkedin size={20} />
               </a>
             </div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.form
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
@@ -90,28 +148,66 @@ function Contact() {
           >
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
-              className="w-full p-4 rounded-xl bg-zinc-800 outline-none border border-zinc-700"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full p-4 rounded-xl bg-zinc-800 outline-none border border-zinc-700 focus:border-cyan-400 transition"
             />
 
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
-              className="w-full p-4 rounded-xl bg-zinc-800 outline-none border border-zinc-700"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full p-4 rounded-xl bg-zinc-800 outline-none border border-zinc-700 focus:border-cyan-400 transition"
             />
 
             <textarea
-              rows="5"
+              name="message"
               placeholder="Your Message"
-              className="w-full p-4 rounded-xl bg-zinc-800 outline-none border border-zinc-700"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows="5"
+              className="w-full p-4 rounded-xl bg-zinc-800 outline-none border border-zinc-700 focus:border-cyan-400 transition resize-none"
             />
+
+          
+            {submitStatus && (
+              <div className={`p-4 rounded-xl flex items-center gap-3 ${
+                submitStatus.type === "success" 
+                  ? "bg-green-500/20 border border-green-500 text-green-400" 
+                  : "bg-red-500/20 border border-red-500 text-red-400"
+              }`}>
+                {submitStatus.type === "success" ? (
+                  <CheckCircle size={20} />
+                ) : (
+                  <AlertCircle size={20} />
+                )}
+                <span>{submitStatus.message}</span>
+              </div>
+            )} 
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 py-4 rounded-xl font-semibold transition"
+              disabled={isSubmitting}
+              className="w-full flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 py-4 rounded-xl font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Send size={18} />
-              Send Message
+              {isSubmitting ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send size={18} />
+                  Send Message
+                </>
+              )}
             </button>
           </motion.form>
         </div>

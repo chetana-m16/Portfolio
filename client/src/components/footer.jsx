@@ -1,18 +1,19 @@
 import React from "react";
 import { Code2, Briefcase, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-black text-white border-t border-zinc-800 py-8 px-6">
+    <footer className="bg-black text-white border-t border-zinc-800 py-4 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         
         {/* Left */}
         <div className="text-center md:text-left">
           <h2 className="text-xl font-bold">
-            Chetana <span className="text-cyan-400">Mahajan</span>
+            Chetana Mahajan
           </h2>
           <p className="text-zinc-400 text-sm mt-2">
-            Java Developer | MERN Learner | ML Enthusiast
+             MERN developer| problem solver| Java Developer |Open Source Enthusiast
           </p>
         </div>
 
@@ -38,30 +39,30 @@ function Footer() {
         {/* Right Social */}
         <div className="flex gap-4">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/chetana-m16"
             className="p-3 rounded-full bg-zinc-900 hover:bg-cyan-500 transition"
           >
-            <Code2 size={18} />
+            <FaGithub size={18} />
           </a>
 
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/chetana-mahajan-b78333221"
             className="p-3 rounded-full bg-zinc-900 hover:bg-cyan-500 transition"
           >
-            <Briefcase size={18} />
+            <FaLinkedin size={18} />
           </a>
 
           <a
-            href="mailto:yourmail@gmail.com"
+            href="mailto:chetnamahajan2@gmail.com"
             className="p-3 rounded-full bg-zinc-900 hover:bg-cyan-500 transition"
           >
-            <Mail size={18} />
+            <FaEnvelope size={18} />
           </a>
         </div>
       </div>
 
       {/* Bottom */}
-      <div className="text-center text-zinc-500 text-sm mt-8 border-t border-zinc-800 pt-6">
+      <div className="text-center text-zinc-500 text-sm  border-t border-zinc-800 pt-6">
         © 2026 Chetana Mahajan. All rights reserved.
       </div>
     </footer>

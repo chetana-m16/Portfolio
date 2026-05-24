@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Dancing+Script:wght@400..700&display=swap');
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -31,9 +34,18 @@
     font-size: 16px;
   }
 }
-.logo-font {
-  font-family: 'JetBrains Mono', monospace;
 
+.cursive-font {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight:200;
+  font-style: normal;
+}
+.logo-font {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight:300;
+  font-style: normal;
 }
 @media (prefers-color-scheme:dark) {
   :root {

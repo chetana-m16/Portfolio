@@ -3,57 +3,125 @@ import { motion } from "framer-motion";
 
 const skillData = {
   Languages: [
-    { name: "Java", icon: "☕", level: "90%" },
-    { name: "Python", icon: "🐍", level: "85%" },
-    { name: "JavaScript", icon: "🟨", level: "80%" },
-    { name: "C", icon: "🔵", level: "75%" },
-    { name: "C++", icon: "⚡", level: "75%" },
-    { name: "SQL", icon: "🗄️", level: "85%" },
+    {
+      name: "Java",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    },
+    {
+      name: "Python",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    },
+    {
+      name: "JavaScript",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    },
+    {
+      name: "C",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+    },
+    {
+      name: "C++",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+    },
+    {
+      name: "SQL",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    },
   ],
 
   Databases: [
-    { name: "MySQL", icon: "💾", level: "85%" },
-    { name: "MongoDB", icon: "🍃", level: "75%" },
-    { name: "Oracle", icon: "🔴", level: "70%" },
+    {
+      name: "MySQL",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    },
+    {
+      name: "MongoDB",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    },
+    {
+      name: "Oracle",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg",
+    },
   ],
 
   Frameworks: [
-    { name: "React", icon: "⚛️", level: "80%" },
-    { name: "Node.js", icon: "🟢", level: "70%" },
-    { name: "Tailwind CSS", icon: "🎨", level: "85%" },
-    { name: "Bootstrap", icon: "🅱️", level: "80%" },
+    {
+      name: "React",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    {
+      name: "Node.js",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      image:
+        "https://in.images.search.yahoo.com/images/view;_ylt=Awr1QjPx6RFqLcQ27iu9HAx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzlhNjQ2OGZjZmU2YTgxZmIxYTA5ZDc2Nzk5YjA3MzlkBGdwb3MDMTA0BGl0A2Jpbmc-?back=https%3A%2F%2Fin.images.search.yahoo.com%2Fsearch%2Fimages%3Fp%3Dtailwind%2Bcss%26type%3DE210IN885G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26nost%3D1%26tab%3Dorganic%26ri%3D104&w=2000&h=1000&imgurl=morganfeeney.com%2Fcontent%2Fguides%2Fhow-to-use-the-tailwind-css-grid-system%2Ffeatured.jpg&rurl=https%3A%2F%2Fstorage.googleapis.com%2Fdesvhfycefwwle%2Fcenter-column-tailwind.html&size=115KB&p=tailwind+css&oid=9a6468fcfe6a81fb1a09d76799b0739d&fr2=piv-web&fr=mcafee&tt=Center+Column+Tailwind+at+Sofia+Gellatly+blog&b=61&ni=21&no=104&ts=&tab=organic&sigr=N_bwc2C2a6gw&sigb=T13P9d.e9Xms&sigi=RHxn6Z_56PsL&sigt=NoDAJQlzDTkk&.crumb=S1L0VtvMnsw&fr=mcafee&fr2=piv-web&type=E210IN885G0",
+    },
+    {
+      name: "Bootstrap",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+    },
   ],
 
   Tools: [
-    { name: "Git", icon: "🔧", level: "80%" },
-    { name: "GitHub", icon: "🐙", level: "85%" },
-    { name: "VS Code", icon: "💻", level: "90%" },
-    { name: "Postman", icon: "📮", level: "75%" },
+    {
+      name: "Git",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    },
+    {
+      name: "GitHub",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    },
+    {
+      name: "VS Code",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    },
+    {
+      name: "Postman",
+      image:
+        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+    },
   ],
 };
 
 const SkillCard = ({ skill }) => {
   return (
     <motion.div
-      whileHover={{ y: -8, scale: 1.05 }}
-      className="bg-white/5 backdrop-blur-lg border border-white/10 
-      rounded-2xl p-5 shadow-lg hover:shadow-cyan-500/20 transition-all"
+      whileHover={{ y: -5, scale: 1.04 }}
+      transition={{ duration: 0.25 }}
+      className="bg-zinc-900/80 border border-zinc-700 rounded-xl 
+      p-4 flex flex-col items-center justify-center
+      hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-500/10 transition-all"
     >
-      <div className="text-5xl text-center mb-3">{skill.icon}</div>
-      <h3 className="text-lg font-semibold text-center">{skill.name}</h3>
+      <div className="bg-white rounded-lg p-2 mb-3">
+        <img
+          src={skill.image}
+          alt={skill.name
 
-      <div className="w-full bg-zinc-700 rounded-full h-2 mt-4">
-        <div
-          className="bg-cyan-400 h-2 rounded-full"
-          style={{ width: skill.level }}
+          }
+          className="w-10 h-10 object-contain"
         />
       </div>
 
-      <p className="text-center text-sm text-zinc-400 mt-2">{skill.level}</p>
-
-      <button className="mt-4 w-full py-2 rounded-lg bg-cyan-500 hover:bg-cyan-600 transition font-medium">
-        Certificate
-      </button>
+      <h3 className="text-sm font-medium text-center">
+        {skill.name}
+      </h3>
     </motion.div>
   );
 };
@@ -65,8 +133,7 @@ function Skills() {
       className="min-h-screen bg-gradient-to-br from-slate-950 via-zinc-900 to-black text-white px-6 py-20 relative overflow-hidden"
     >
       {/* Background Glow */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/20 blur-3xl rounded-full animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/20 blur-3xl rounded-full animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
@@ -75,7 +142,7 @@ function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
           <h1 className="text-5xl md:text-6xl font-bold">
             My <span className="text-cyan-400">Skills</span>
@@ -93,17 +160,17 @@ function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
             viewport={{ once: true }}
-            className="mb-20"
+            className="mb-16"
           >
-            <h2 className="text-3xl font-semibold mb-8 border-l-4 border-cyan-400 pl-4">
+            <h2 className="text-3xl font-semibold mb-8  ">
               {category}
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {skills.map((skill) => (
-                <SkillCard key={skill.name} skill={skill} />
-              ))}
-            </div>
+                  <div className="flex flex-wrap justify-center gap-3">
+  {skills.map((skill) => (
+    <SkillCard key={skill.name} skill={skill} />
+  ))}
+</div>
           </motion.div>
         ))}
       </div>
