@@ -1,50 +1,73 @@
 require("dotenv").config();
 
 const express = require("express");
+const http = require("http");
 const cors = require("cors");
-const mongoose = require("mongoose");
-const Contact = require("./models/Contact");
+
+const connectDB = require("./config/db");
+const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
-const PORT = 5000;
+const server = http.createServer(app);
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Connect to MongoDB
+connectDB();
+
+// ========== MIDDLEWARE (ORDER MATTERS!) ==========
+app.use(cors({
+  origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:5000"],
+  credentials: true,
+}));
+
+// ⚠️ CRITICAL: These MUST be before your routes
+app.use(express.json({ limit: "10mb" }));  // Parses JSON
+app.use(express.urlencoded({ limit: "10mb", extended: true }));  // Parses form data
+
+// Debug middleware to see what's coming in
+app.use((req, res, next) => {
+  console.log(`\n ${req.method} ${req.url}`);
+  console.log("Headers:", req.headers["content-type"]);
+  console.log("Body:", req.body);
+  next();
+});
+
+// ========== ROUTES ==========
+app.use("/api", contactRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("Server running 🚀");
+  res.send("Contact Backend Running 🚀");
 });
 
-// MongoDB connection
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected successfully ✅"))
-  .catch((err) => console.log("MongoDB connection error:", err));
-
-// Contact route (debug mode)
-app.post("/api/contact", async (req, res) => {
-  try {
-    console.log("HEADERS:", req.headers);
-    console.log("BODY DATA:", req.body);
-
-    // For now just return received data
-    res.status(200).json({
-      message: "Request received successfully ✅",
-      body: req.body,
-    });
-
-  } catch (error) {
-    console.log("ERROR:", error);
-    res.status(500).json({
-      message: "Server error",
-    });
-  }
+// Test POST route to verify body parsing
+app.post("/test", (req, res) => {
+  console.log("Test route body:", req.body);
+  res.json({ 
+    message: "Test route works!", 
+    receivedBody: req.body 
+  });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.method} ${req.url} not found`
+  });
+});
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error("Global Error Handler:", err);
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || "Internal Server Error",
+  });
+});
+
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
+  console.log(`\n🚀 Server running on port ${PORT}`);
+  console.log(`📝 API Endpoint: http://localhost:${PORT}/api/contact`);
+  console.log(`🧪 Test endpoint: http://localhost:${PORT}/test\n`);
 });
