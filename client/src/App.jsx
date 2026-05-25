@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 import About from "./pages/about";
 import Home from "./pages/Home";
-import Skills from "./pages/Skills";
-import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
-import Achievements from "./pages/Achievements";
+import Skills from "./pages/skills";
+import Projects from "./pages/projects";
+import Contact from "./pages/contact";
+import Achievements from "./pages/achievements";
 import Experience from "./pages/experience";
 function App() {
   return (
