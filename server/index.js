@@ -14,12 +14,8 @@ const server = http.createServer(app);
 connectDB();
 
 // ========== MIDDLEWARE (ORDER MATTERS!) ==========
-app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:5000"],
-  credentials: true,
-}));
+app.use(cors());
 
-// ⚠️ CRITICAL: These MUST be before your routes
 app.use(express.json({ limit: "10mb" }));  // Parses JSON
 app.use(express.urlencoded({ limit: "10mb", extended: true }));  // Parses form data
 
