@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu } from "lucide-react";
-import SidebarMenu from "./SidebarMenu";
+import SidebarMenu from "../components/sidebarmenu";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
