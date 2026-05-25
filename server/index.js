@@ -13,17 +13,16 @@ const server = http.createServer(app);
 // Connect to MongoDB
 connectDB();
 
-// ========== MIDDLEWARE (ORDER MATTERS!) ==========
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://portfolio-chetana-portfolio.vercel.app",
-    ],
-    methods: ["GET", "POST"],
-    credentials: true,
+    origin: "https://portfolio-chetana-portfolio.vercel.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
   })
 );
+
+app.options("*", cors());
+app.use(express.json());
 
 app.use(express.json({ limit: "10mb" }));  // Parses JSON
 app.use(express.urlencoded({ limit: "10mb", extended: true }));  // Parses form data
