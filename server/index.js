@@ -15,7 +15,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: "https://portfolio-chetana-portfolio.vercel.app",
+    origin: "https://portfolio-chetana-portfolio.vercel.app/",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   })
