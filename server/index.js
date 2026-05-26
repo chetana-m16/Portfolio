@@ -13,16 +13,8 @@ const server = http.createServer(app);
 // Connect to MongoDB
 connectDB();
 
-app.use(
-  cors({
-    origin: "https://portfolio-chetana-portfolio.vercel.app",
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
-
-app.options("*", cors());
-app.use(express.json());
+// ========== MIDDLEWARE (ORDER MATTERS!) ==========
+app.use(cors());
 
 app.use(express.json({ limit: "10mb" }));  // Parses JSON
 app.use(express.urlencoded({ limit: "10mb", extended: true }));  // Parses form data
@@ -43,41 +35,15 @@ app.get("/", (req, res) => {
   res.send("Contact Backend Running 🚀");
 });
 
-app.post("/api/contact", async (req, res) => {
-  try {
-    console.log("BODY:", req.body);
-
-    const { name, email, message } = req.body || {};
-
-    if (!name || !email || !message) {
-      return res.status(400).json({
-        success: false,
-        message: "Missing fields",
-      });
-    }
-
-    const contact = new Contact({
-      name,
-      email,
-      message,
-    });
-
-    await contact.save();
-
-    res.status(201).json({
-      success: true,
-      message: "Message saved successfully",
-    });
-
-  } catch (error) {
-    console.log("ERROR:", error);
-
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
+// Test POST route to verify body parsing
+app.post("/test", (req, res) => {
+  console.log("Test route body:", req.body);
+  res.json({ 
+    message: "Test route works!", 
+    receivedBody: req.body 
+  });
 });
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
