@@ -21,7 +21,7 @@ app.use(
       "http://localhost:5173",
       "https://portfolio-chetana-portfolio.vercel.app",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST"],
     credentials: true,
   })
 );
